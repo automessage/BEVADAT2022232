@@ -74,7 +74,7 @@ def reverse_tuples(input_list):
 #input parameters: input_list
 
 # %%
-def remove_tuplicates(input_list):
+def remove_duplicates(input_list):
     unique_list = []
     for element in input_list:
         if element not in unique_list:
@@ -104,8 +104,10 @@ def transpose(input_list):
 # %%
 import math
 def split_into_chunks(input_list, chunk_size):
+    chunked_list = []
     for i in range(0, math.ceil(len(input_list) / chunk_size)):
-        yield input_list[i*chunk_size:min([len(input_list), i*chunk_size+chunk_size])]
+        chunked_list.append(input_list[i*chunk_size:min([len(input_list), i*chunk_size+chunk_size])])
+    return chunked_list
 
 # %%
 #Create a function that can merge n dictionaries
