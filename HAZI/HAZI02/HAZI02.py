@@ -17,10 +17,9 @@ import numpy as np
 
 # %%
 def column_swap(input_array):
-    input_array[:, [0, 1]] = input_array[:, [1, 0]]
-    return input_array
+    return np.flip(input_array, axis=1)
 
-#print(column_swap(np.array([[1,2],[3,4]])))
+#print(column_swap(np.array([[1,2,3],[3,4,6]])))
 
 # %%
 # Készíts egy olyan függvényt ami összehasonlít két array-t és adjon vissza egy array-ben, hogy hol egyenlőek 
@@ -35,12 +34,9 @@ def compare_elements(x, y):
 compare_elements = np.frompyfunc(compare_elements, 2, 1)
 
 def compare_two_array(input_array1, input_array2):
-    if (input_array1.shape != input_array2.shape):
-        return np.array([])
-    
-    return input_array1[list(compare_elements(input_array1, input_array2))]
+    return np.where(compare_elements(input_array1, input_array2) == True)[0]
 
-# print(compare_two_array(np.array([5, 8, 7]), np.array([9, 8, 7])))
+# print(compare_two_array(np.array([5, 8, 6]), np.array([9, 8, 7])))
     
 
 # %%
@@ -233,8 +229,10 @@ def get_act_date():
 
 # %%
 def sec_from_1970():
-    return (np.datetime64('now') - np.datetime64('1970-01-01 00:02:00')).astype(int)
+    return ((np.datetime64('now') - np.datetime64('1970-01-01 00:02:00')) / np.timedelta64(1, 's')).astype(int)
 
 #print(np.datetime64('1970-01-01 00:02:00'))
+#print(np.datetime64('now'))
+# print(sec_from_1970())
 
 
