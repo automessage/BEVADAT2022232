@@ -34,6 +34,9 @@ def compare_elements(x, y):
 compare_elements = np.frompyfunc(compare_elements, 2, 1)
 
 def compare_two_array(input_array1, input_array2):
+    if (input_array1.size != input_array2.size):
+        return np.array([])
+    
     return np.where(compare_elements(input_array1, input_array2) == True)[0]
 
 # print(compare_two_array(np.array([5, 8, 6]), np.array([9, 8, 7])))
