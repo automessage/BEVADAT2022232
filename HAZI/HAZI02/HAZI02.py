@@ -29,15 +29,11 @@ def column_swap(input_array):
 # egyenlő elemszámúakra kell csak hogy működjön
 
 # %%
-def compare_elements(x, y):
-    return x == y;
-compare_elements = np.frompyfunc(compare_elements, 2, 1)
-
 def compare_two_array(input_array1, input_array2):
     if (input_array1.size != input_array2.size):
         return np.array([])
     
-    return np.where(compare_elements(input_array1, input_array2) == True)[0]
+    return np.asarray(np.where(input_array1 == input_array2)).flatten()
 
 # print(compare_two_array(np.array([5, 8, 6]), np.array([9, 8, 7])))
     
