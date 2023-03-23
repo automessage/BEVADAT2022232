@@ -2,6 +2,8 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+import random
+import matplotlib as mpl
 
 # %%
 '''
@@ -109,7 +111,6 @@ függvény neve: add_age
 '''
 
 # %%
-import random
 
 def add_age(df_data: pd.core.frame.DataFrame) -> pd.core.frame.DataFrame:
     df = df_data.copy()
@@ -181,7 +182,6 @@ függvény neve: math_bar_plot
 '''
 
 # %%
-import matplotlib as mpl
 def math_bar_plot(df_data: pd.core.frame.DataFrame) -> mpl.figure.Figure:
     fig, ax = plt.subplots()
     ax.set_title('Average Math Score by Gender')
