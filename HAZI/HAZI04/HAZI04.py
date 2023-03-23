@@ -23,7 +23,7 @@ függvény neve: csv_to_df
 def csv_to_df(path: str) -> pd.core.frame.DataFrame:
     return pd.read_csv(path)
 
-df_data = csv_to_df('StudentsPerformance.csv')
+#df_data = csv_to_df('StudentsPerformance.csv')
 #df_data
 
 # %%
