@@ -2,7 +2,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
-import random
 import matplotlib as mpl
 
 # %%
@@ -95,7 +94,7 @@ függvény neve: average_scores
 # %%
 def average_scores(df_data: pd.core.frame.DataFrame) -> pd.core.frame.DataFrame:
     df = df_data.copy()
-    return df.groupby('parental level of education', as_index=False)[['math score', 'reading score', 'writing score']].mean()
+    return df.groupby('parental level of education')[['math score', 'reading score', 'writing score']].mean().sum(axis=1).to_frame(name='avarage score')
 
 #average_scores(df_data)
 
@@ -111,11 +110,10 @@ függvény neve: add_age
 '''
 
 # %%
-
 def add_age(df_data: pd.core.frame.DataFrame) -> pd.core.frame.DataFrame:
     df = df_data.copy()
-    random.seed(42)
-    df['age'] = df['lunch'].apply(lambda lunch: random.randint(18, 66))
+    np.random.seed(42)
+    df['age'] = np.random.randint(18, 66, df.shape[0])
     return df
 
 #add_age(df_data)
