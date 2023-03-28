@@ -37,7 +37,7 @@ class KNNClassifier:
         return np.sqrt(np.sum((self.x_train - element_of_x)**2, axis=1))
     
     def predict(self, x_test:np.ndarray):
-        labels_pred = [];
+        labels_pred = []
         for x_test_element in x_test:
             distances = self.euclidean(self.x_train, x_test_element)
             distances = np.array(sorted(zip(distances, self.y_train)))

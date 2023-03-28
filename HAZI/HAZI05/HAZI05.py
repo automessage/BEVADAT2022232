@@ -35,7 +35,7 @@ class KNNClassifier:
         return ((self.x_train - element_of_x)**2).sum(axis=1) ** .5
     
     def predict(self, x_test: pd.core.frame.DataFrame):
-        labels_pred = [];
+        labels_pred = []
         for index, x_test_element in x_test.iterrows():
             distances = self.euclidean(self.x_train, x_test_element)
             distances = pd.DataFrame(sorted(zip(distances, self.y_train)))
