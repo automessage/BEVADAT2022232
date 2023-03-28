@@ -49,7 +49,7 @@ class KNNClassifier:
     
     def confusion_matrix(self):
         conf_matrix = confusion_matrix(self.y_test,self.y_preds)
-        sns.heatmap(conf_matrix, annot=True)
+        return sns.heatmap(conf_matrix, annot=True)
 
     def k_neighbors(self) -> int:
         return self.k
