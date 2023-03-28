@@ -9,6 +9,7 @@ Felosztja a DataFrame-et 2 x 2 felé:
 2. Ellenőrző adatok
     - bemeneti paraméterek
     - kimeneti paraméter
+
 Erre azért van szükség, hogy a tanítás után tesztelhető legyen ismert kimeneteken a tanítás sikeressége/pontossága.
 
 # euclidean
