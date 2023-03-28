@@ -22,12 +22,12 @@ class KNNClassifier:
     def train_test_split(self,
                          features: np.ndarray,
                          labels: np.ndarray):
-        test_size = int(len(features) * self.test_plit_ratio)
+        test_size = int(len(features) * self.test_split_ratio)
         train_size = len(features) - test_size
         assert len(features) == test_size + train_size, "Size mismatch!"
 
         self.x_train,self.y_train = features[:train_size,:],labels[:train_size]
-        self.x_test,self.y_test = features[train_size:train_size+test_size,:], labels[train_size:train_size + test_size]
+        self.x_test,self.y_test = features[train_size:,:], labels[train_size:]
     
     def euclidean(self, element_of_x:np.ndarray) -> np.ndarray:
         return np.sqrt(np.sum((self.x_train - element_of_x)**2, axis=1))
