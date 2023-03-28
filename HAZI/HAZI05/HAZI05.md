@@ -20,7 +20,7 @@ A tesztelendő sorokra egyenként meghívja az `euclidean` metódust, ami vissza
 A `predict` metódus által megtippelt kimeneteleket összehasonlítjuk a a teszt adatok valós kimeteivel és visszadjuk, hogy hány %-ban sikerült eltalálni a kimenetelt.
 
 # confusion_matrix
-Visszaad egy diagrammot, mely megmutatja, hogy a valós és valótlan tippek hogyan oszlanak szét a klasszifikációs csoportok között
+Visszaad egy mátrixot, mely megmutatja, hogy a valós és valótlan tippek hogyan oszlanak szét a klasszifikációs csoportok között
 
 # best_accuracy
 Visszad egy adatpárost, melyben az első a `k` paramétere, a második pedig a pontossága a legpontossab predikációnak.
