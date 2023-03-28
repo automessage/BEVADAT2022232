@@ -50,7 +50,8 @@ class KNNClassifier:
     
     def confusion_matrix(self):
         conf_matrix = confusion_matrix(self.y_test, self.y_preds)
-        return sns.heatmap(conf_matrix, annot=True)
+        #sns.heatmap(conf_matrix, annot=True)
+        return conf_matrix
     
     def best_accuracy(self) -> Tuple[int, float]:
         best_k = 0
