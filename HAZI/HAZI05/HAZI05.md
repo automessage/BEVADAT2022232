@@ -13,7 +13,7 @@ Felosztja a DataFrame-et 2 x 2 felé:
 Erre azért van szükség, hogy a tanítás után tesztelhető legyen ismert kimeneteken a tanítás sikeressége/pontossága.
 
 # euclidean
-Euklidészi algoritmust használva kiszámítja egy vizsgálandó sor bemeneti paramétereihez vett távolságot a tanító adatok minden sorának bemeneti paramétereihez.
+Euklidészi algoritmust használva kiszámítja egy vizsgálandó sor bemeneti paramétereihez vett távolságot a tanító adatok minden sorának bemeneti paramétereihez. Ezt úgy teszi meg, hogy az egyes attribútumok különbségét veszi, majd ezek négyzetét összegzi, mely összegből négyzetgyököt von.
 
 # predict
 A tesztelendő sorokra egyenként meghívja az `euclidean` metódust, ami visszaadja a távolságokat egy vektorban, melyeket együtt rendezünk (a tanító adatok kimeneteivel együtt) növekvő sorrnedbe, majd a `k` paraméter alapján a legelső `k` darab sorban leggyakoribban előforduló kimetelt kiválasztjuk a vizsgált sorhoz.
