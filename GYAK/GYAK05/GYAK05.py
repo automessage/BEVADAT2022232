@@ -7,6 +7,10 @@ import seaborn as sns
 
 class KNNClassifier:
 
+    @property
+    def k_neighbors(self) -> int:
+        return self.k
+
     def __init__(self, k:int, test_split_ratio: float):
         self.k = k
         self.test_split_ratio = test_split_ratio
@@ -50,7 +54,4 @@ class KNNClassifier:
     def confusion_matrix(self):
         conf_matrix = confusion_matrix(self.y_test,self.y_preds)
         return sns.heatmap(conf_matrix, annot=True)
-
-    def k_neighbors(self) -> int:
-        return self.k
     
