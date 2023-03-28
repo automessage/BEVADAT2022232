@@ -16,7 +16,7 @@ Erre azért van szükség, hogy a tanítás után tesztelhető legyen ismert kim
 Euklidészi algoritmust használva kiszámítja egy vizsgálandó sor bemeneti paramétereihez vett távolságot a tanító adatok minden sorának bemeneti paramétereihez. Ezt úgy teszi meg, hogy az egyes attribútumok különbségét veszi, majd ezek négyzetét összegzi, mely összegből négyzetgyököt von.
 
 # predict
-A tesztelendő sorokra egyenként meghívja az `euclidean` metódust, ami visszaadja a távolságokat egy vektorban, melyeket együtt rendezünk (a tanító adatok kimeneteivel együtt) növekvő sorrnedbe, majd a `k` paraméter alapján a legelső `k` darab sorban leggyakoribban előforduló kimetelt kiválasztjuk a vizsgált sorhoz.
+A tesztelendő sorokra egyenként meghívja az `euclidean` metódust, ami visszaadja a távolságokat egy vektorban, melyeket rendez (a tanító adatok kimeneteivel összerendelve) növekvő sorrendbe, majd a `k` paraméter alapján a legelső `k` darab sorban leggyakoribban előforduló kimetelt kiválasztja a vizsgált sorhoz.
 
 # accuracy
 A `predict` metódus által megtippelt kimeneteleket összehasonlítjuk a a teszt adatok valós kimeteivel és visszadjuk, hogy hány %-ban sikerült eltalálni a kimenetelt.
