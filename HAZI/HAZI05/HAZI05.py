@@ -56,11 +56,15 @@ class KNNClassifier:
     def best_accuracy(self) -> Tuple[int, float]:
         best_k = 0
         best_pred_accuracy = 0.0
+        temp_k = self.k
         for i in range(10):
-            y_preds = self.predict(self.x_train, self.y_train, self.x_test, i*2+1)
-            pred_accuracy = self.accuracy(self.y_test, y_preds)
+            self.k = i*2+1
+            self.predict(self.x_test)
+            pred_accuracy = self.accuracy()
             if (best_pred_accuracy < pred_accuracy):
-                best_k = i*2+1
+                best_k = self.k
                 best_pred_accuracy = pred_accuracy
+        
+        self.k = temp_k
         
         return best_k, round(best_pred_accuracy, 2)
