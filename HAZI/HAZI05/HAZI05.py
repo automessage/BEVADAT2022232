@@ -53,7 +53,7 @@ class KNNClassifier:
         #sns.heatmap(conf_matrix, annot=True)
         return conf_matrix
     
-    def best_accuracy(self) -> Tuple[int, float]:
+    def best_k(self) -> Tuple[int, float]:
         best_k = 0
         best_pred_accuracy = 0.0
         temp_k = self.k
