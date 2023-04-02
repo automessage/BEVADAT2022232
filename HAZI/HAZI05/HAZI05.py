@@ -68,3 +68,9 @@ class KNNClassifier:
         self.k = temp_k
         
         return best_k, round(best_pred_accuracy, 2)
+
+#teszt = KNNClassifier(3, 0.2)
+#x, y = KNNClassifier.load_csv('diabetes.csv')
+#teszt.train_test_split(x, y)
+
+#print(teszt.best_k())
