@@ -57,8 +57,8 @@ class KNNClassifier:
         best_k = 0
         best_pred_accuracy = 0.0
         temp_k = self.k
-        for i in range(10):
-            self.k = i*2+1
+        for i in range(20):
+            self.k = i+1
             self.predict(self.x_test)
             pred_accuracy = self.accuracy()
             if (best_pred_accuracy < pred_accuracy):

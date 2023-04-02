@@ -25,4 +25,4 @@ A `predict` metódus által megtippelt kimeneteleket összehasonlítjuk a a tesz
 Visszaad egy mátrixot, mely megmutatja, hogy a valós és valótlan tippek hogyan oszlanak szét a klasszifikációs csoportok között
 
 # best_accuracy
-Visszad egy adatpárost, melyben az első a `k` paramétere, a második pedig a pontossága a legpontosabb predikációnak 1 és 20 közötti `k` értékekre. Ezt úgy választja ki, hogy 1 és 20 között veszi a páratlan számokat és mindegyikre ellenőrzi a pontosságot. Ha pontosabb predikálást talál az eddigi legpontosabbnál, a `k` értéket és a pontosságot feljegyezi, majd folytatja a keresést, amíg az intervallum végére nem ér.
+Visszad egy adatpárost, melyben az első a `k` paramétere, a második pedig a pontossága a legpontosabb predikációnak 1 és 20 közötti `k` értékekre. Ezt úgy választja ki, hogy 1 és 20 között veszi a számokat és mindegyikre ellenőrzi a pontosságot. Ha pontosabb predikálást talál az eddigi legpontosabbnál, a `k` értéket és a pontosságot feljegyezi, majd folytatja a keresést, amíg az intervallum végére nem ér.
