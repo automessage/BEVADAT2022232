@@ -49,7 +49,7 @@ class NJCleaner:
         self.convert_scheduled_time_to_part_of_the_day()
         self.convert_delay()
         self.drop_unnecessary_columns()
-        self.save_first_60k('data/NJ.csv')
+        self.save_first_60k(csv_save_path)
 
 
 # cleaning = NJCleaner('data/2018_03.csv')
