@@ -56,6 +56,92 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 
 from src.DecisionTreeClassifier import DecisionTreeClassifier
+from src.Loader import Loader
+from src.GridSearch import DecesionTreeGridSearch
 
+loading = Loader('Reading CSV')
+loading.start()
+data = pd.read_csv("data/NJ.csv")
+loading.terminate()
+#print(data)
 
+loading = Loader('Splitting data')
+loading.start()
+X = data.iloc[:, :-1].values
+Y = data.iloc[:, -1].values.reshape(-1,1)
+X_train, X_test, Y_train, Y_test = train_test_split(X,Y,test_size=.2, random_state=41)
+loading.terminate()
 
+loading = Loader('Fitting tree')
+loading.start()
+classifier = DecisionTreeClassifier(min_samples_split=13, max_depth=10)
+classifier.fit(X_train, Y_train)
+loading.terminate()
+
+loading = Loader('Predicting on test data')
+loading.start()
+Y_pred = classifier.predict(X_test)
+loading.terminate()
+
+print('Accuracy: ' + str(accuracy_score(Y_test, Y_pred)))
+
+"""
+Mégységre és a szétosztási értékre IS figyelni kell
+
+Mélység egyenesen arányos a túltanításal
+Szétosztási érték fordítottan arányos a túltanítással
+
+A kettő megfelelő egyensúlyát kell megtalálni.
+"""
+
+# gs = DecesionTreeGridSearch(possible_split_values=[5], possible_depth_values=range(7, 12))
+# gs = DecesionTreeGridSearch(possible_split_values=range(6, 11), possible_depth_values=[10])
+# gs = DecesionTreeGridSearch(possible_split_values=range(11, 15), possible_depth_values=[10])
+# gs = DecesionTreeGridSearch(possible_split_values=range(15, 20), possible_depth_values=[10])
+
+# best_result, results = gs.searchBestDepth(X_train, X_test, Y_train, Y_test)
+
+# print('------------------------------------')
+# print(best_result)
+# print('------------------------------------')
+# print(results)
+
+"""
+Első körben a fit-elésnél a mélységet nagyobb nagyságrendi léptékkel próbáltam meghatározni, hogy a pontossági görbe hol fordul vissza.
+Itt az egyes fit-ek több időt vettek igénybe, így írtam egy kisebb loading jelzőt, amit egy külön szálon elindítottam, hogy képben legyek a futások hosszával.
+Ennél a pontnál észrevettem, hogy 2-3 percig futnak a fit-ek, ami önmagában nem olyan hosszú idő, de több paraméterezés teszteléséhez ez igencsak összeadódik.
+A javasolt grid search metodóligát átnézve írtam egy osztályt, ami a tesztelést elvégzi a beadott paraméterek listáján.
+Itt észrevettem, hogy hibát dob a 'DecesionTreeClassifier' osztály egy bizonyos mélység felett.
+A hiba okát feltártam és módosítottam az osztályon, ez után kezdődhetett a 7-nél magasabb mélységekre való fit-elések tesztelése, mivell itt még látszott, hogy a pontosság nő.
+A tesztek alapján a 9-es mélységnél fordult vissza a pontossági görbe a teszt adatokon. Ezután a split értékét pontosítottam, melyre a 9 és 10-es érték ugyanazt az eredményt hozta, utána csökkenni kezdett a pontosság.
+A feladat leírásában 80%-os pontosság van megadva, de csak 79,30172485626198% volt a legmagasabb amit el tudtam érni a paraméterezéssel.
+Itt vettem észre, hogy az adatoknál a fejlécet a csv beolvasásánál a header=None paraméter miatt adatsorként olvasta be, ami elvitte az egész folyamatot.
+Így újra megpróbálom meghatározni a pontossági görbe forduló pontját. 5 - 15 mélységig a grid search segítségével ellenőrzöm a pontosságokat.
+A tesztek alapján a 10-es mélységre lett a legmagasabb eredmény. Erre a mélységre próbáljuk meghatározni a megfelelő vágási értéket, hogy a pontosságot maximalizáljuk.
+Első körben 6-tól 11-ig próbálom meghatározni, a görbe irányváltásának pontját a 10-es mélységen.
+Itt 7-es és 10-es vágás egyforma eredményt hozott, így ellenőrzöm a 11-15 intervallumot, hogy milyen irányba halad.
+80 % a legjobb elért eredmény a 13 vágási és 10-es mélységgel
+15-20-ig ellenőrzöm, hogy a görbe hogyan halad tovább, hátha van pontosabb eredmény.
+Itt már csökkenő tendenciát mutat, így a legjobb talált eredményem:
+
+##################################
+###### min_samples_split=13 ######
+###### max_depth=10         ######
+###### accuracy: 80%        ######
+##################################
+
+A test_results.txt tartalmazza a próbálkozásaim eredményeit, ezek közül néhány:
+    | split | depth | accuracy |
+    |   5   |   8   | 79,55%   |
+    |   5   |   9   | 79,775%  |
+    |   5   |   10  | 79,9417% |
+    |   5   |   11  | 79,8417% |
+    |   5   |   12  | 79,4417% |
+    
+    |   9   |   10  | 79,975%  |
+    |   10  |   10  | 79,9833% |
+    |   11  |   10  | 79,9917% |
+    |   14  |   10  | 79,9833% |
+    |   15  |   10  | 79,9917% |
+    |   17  |   10  | 79,9833% |
+"""
