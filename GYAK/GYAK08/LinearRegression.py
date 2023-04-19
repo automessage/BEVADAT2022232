@@ -151,6 +151,6 @@ y_pred = lr.predict(X_test)
 
 evaluate_value = lr.evaluate(X_test, y_test)
 
-print(evaluate_value)
+# print(evaluate_value)
 
 
