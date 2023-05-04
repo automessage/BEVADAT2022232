@@ -34,8 +34,8 @@ függvény neve: mnist_model
 def mnist_model():
     return tf.keras.Sequential([
         tf.keras.layers.Flatten(input_shape=(28, 28)),
-        tf.keras.layers.Dense(200, activation='softmax'),
-        tf.keras.layers.Dense(10)
+        tf.keras.layers.Dense(200, activation='relu'),
+        tf.keras.layers.Dense(10, activation='softmax')
     ])
 
 # model = mnist_model()
